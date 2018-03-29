@@ -1,8 +1,8 @@
 import numpy as np
 from operator import itemgetter      #for easiness in sorting and finding max and stuff
-from matplotlib.pylab import *
 import matplotlib
 matplotlib.use('Agg')
+from matplotlib.pylab import *
 from random import sample, choice
 from scipy.sparse import csgraph 
 import os
@@ -81,7 +81,7 @@ class simulateOnlineData():
 		return np.linalg.norm(x-y) # L2 norm
 
 	def batchRecord(self, iter_):
-		print "Iteration %d"%iter_, "Pool", len(self.articlePool)," Elapsed time", datetime.datetime.now() - self.startTime
+		print ("Iteration %d" % iter_, "Pool", len(self.articlePool)," Elapsed time", datetime.datetime.now() - self.startTime)
 
 	def regulateArticlePool(self, currentUser):
 		articlesList = currentUser.articlesList
@@ -259,7 +259,7 @@ class simulateOnlineData():
 					# compute the corresponding return time for the selected arm
 					returnTime= self.getReturnTime(u, pickedArticle, noise_Return)
 
-					print alg_name, 'click:', reward, 'returnTime:', returnTime, 'articletype:', pickedArticle.type
+					print (alg_name, 'click:', reward, 'returnTime:', returnTime, 'articletype:', pickedArticle.type)
 
 					# update model parameters according to the feedback
 					alg.updateParameters(pickedArticle, reward, u.id, returnTime)
@@ -322,8 +322,8 @@ class simulateOnlineData():
 		# plot the results
 		
 		for alg_name in algorithms.iterkeys():
-			print alg_name, TotalRewardList[alg_name][-1]
-			print alg_name, SelectedArticleType[alg_name]
+			print (alg_name, TotalRewardList[alg_name][-1])
+			print (alg_name, SelectedArticleType[alg_name])
 			plt.plot(TotalRewardList[alg_name],label = alg_name)
 		plt.xlabel('time')
 		plt.ylabel('reward')
@@ -452,7 +452,7 @@ if __name__ == '__main__':
 						type_ = "UniformTheta", 
 						signature = AM.signature,
 						poolArticleSize = poolSize, noiseLevel = NoiseScale, epsilon = epsilon, FutureWeight = FutureWeight, ReturnThreshold = ReturnThreshold, alpha = alpha, usealphaT = usealphaT)
-	print "Starting for ", simExperiment.simulation_signature
+	print ("Starting for ", simExperiment.simulation_signature)
 
 	algorithms = {}
 	

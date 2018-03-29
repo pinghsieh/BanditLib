@@ -7,14 +7,13 @@ from sklearn.linear_model import Ridge
 from sklearn.linear_model import LogisticRegression
 from scipy.optimize import minimize
 
-
 import statsmodels.api as sm
 from scipy import stats
 import numpy as np
 import random
-import LinUCB
+from lib import LinUCB
 from sklearn.linear_model import LogisticRegression
-from GLMUCB import sigmoid, Expontential_ParaEstimatation_Exp, LogisticUserStruct, PoissonStruct
+from lib.GLMUCB import sigmoid, Expontential_ParaEstimatation_Exp, LogisticUserStruct, PoissonStruct
 
 
 class UCB1_Article:
@@ -119,7 +118,7 @@ class r2_GLMUCB1Algorithm:
 
 		if self.FutureWeight == None:
 			FutureWeight = self.users[userID].CTR
-			print 'ctr', FutureWeight
+			print ('ctr', FutureWeight)
 		else:
 			FutureWeight = float(self.FutureWeight)
 

@@ -113,10 +113,10 @@ class simulateOnlineData(object):
 					G[i.id][j.id] = 1	
 
 		L = csgraph.laplacian(G, normed = False)
-		print L
+		print (L)
 		I = np.identity(n = G.shape[0])
 		GW = I + Gepsilon*L  # W is a double stochastic matrix
-		print 'GW', GW
+		print ('GW', GW)
 		return GW.T
 
 	def getW(self):
@@ -144,10 +144,10 @@ class simulateOnlineData(object):
 			ui.CoTheta = np.zeros(self.context_dimension+self.latent_dimension)
 			for uj in self.users:
 				ui.CoTheta += self.W[uj.id][ui.id] * np.asarray(uj.theta)
-			print 'Users', ui.id, 'CoTheta', ui.CoTheta	
+			print ('Users', ui.id, 'CoTheta', ui.CoTheta)	
 	
 	def batchRecord(self, iter_):
-		print "Iteration %d"%iter_, "Pool", len(self.articlePool)," Elapsed time", datetime.datetime.now() - self.startTime
+		print ("Iteration %d"%iter_, "Pool", len(self.articlePool)," Elapsed time", datetime.datetime.now() - self.startTime)
 
 	def regulateArticlePool(self):
 		# Randomly generate articles
@@ -220,18 +220,18 @@ class simulateOnlineData(object):
 		
 		with open(filenameWriteRegret, 'w') as f:
 			f.write('Time(Iteration)')
-			f.write(',' + ','.join( [str(alg_name) for alg_name in algorithms.iterkeys()]))
+			f.write(',' + ','.join( [str(alg_name) for alg_name in algorithms.keys()]))
 			f.write('\n')
 		
 		with open(filenameWritePara, 'w') as f:
 			f.write('Time(Iteration)')
-			f.write(',' + ','.join([str(alg_name)+'CoTheta' for alg_name in CoThetaDiffList.iterkeys()]))
-			f.write(','+ ','.join([str(alg_name)+'Theta' for alg_name in ThetaDiffList.iterkeys()]))
-			f.write(','+ ','.join([str(alg_name)+'W' for alg_name in WDiffList.iterkeys()]))
-			f.write(','+ ','.join([str(alg_name)+'V' for alg_name in VDiffList.iterkeys()]))
-			f.write(',' + ','.join([str(alg_name)+'CoThetaV' for alg_name in CoThetaVDiffList.iterkeys()]))
-			f.write(','+ ','.join([str(alg_name)+'R' for alg_name in RDiffList.iterkeys()]))
-			f.write(','+ ','.join([str(alg_name)+'RV' for alg_name in RVDiffList.iterkeys()]))
+			f.write(',' + ','.join([str(alg_name)+'CoTheta' for alg_name in CoThetaDiffList.keys()]))
+			f.write(','+ ','.join([str(alg_name)+'Theta' for alg_name in ThetaDiffList.keys()]))
+			f.write(','+ ','.join([str(alg_name)+'W' for alg_name in WDiffList.keys()]))
+			f.write(','+ ','.join([str(alg_name)+'V' for alg_name in VDiffList.keys()]))
+			f.write(',' + ','.join([str(alg_name)+'CoThetaV' for alg_name in CoThetaVDiffList.keys()]))
+			f.write(','+ ','.join([str(alg_name)+'R' for alg_name in RDiffList.keys()]))
+			f.write(','+ ','.join([str(alg_name)+'RV' for alg_name in RVDiffList.keys()]))
 			f.write('\n')
 		
 		
@@ -321,30 +321,30 @@ class simulateOnlineData(object):
 			if iter_%self.batchSize == 0:
 				self.batchRecord(iter_)
 				tim_.append(iter_)
-				for alg_name in algorithms.iterkeys():
+				for alg_name in algorithms.keys():
 					BatchCumlateRegret[alg_name].append(sum(AlgRegret[alg_name]))
 
 				with open(filenameWriteRegret, 'a+') as f:
 					f.write(str(iter_))
-					f.write(',' + ','.join([str(BatchCumlateRegret[alg_name][-1]) for alg_name in algorithms.iterkeys()]))
+					f.write(',' + ','.join([str(BatchCumlateRegret[alg_name][-1]) for alg_name in algorithms.keys()]))
 					f.write('\n')
 				with open(filenameWritePara, 'a+') as f:
 					f.write(str(iter_))
-					f.write(',' + ','.join([str(CoThetaDiffList[alg_name][-1]) for alg_name in CoThetaDiffList.iterkeys()]))
-					f.write(','+ ','.join([str(ThetaDiffList[alg_name][-1]) for alg_name in ThetaDiffList.iterkeys()]))
-					f.write(','+ ','.join([str(WDiffList[alg_name][-1]) for alg_name in WDiffList.iterkeys()]))
-					f.write(',' + ','.join([str(VDiffList[alg_name][-1]) for alg_name in VDiffList.iterkeys()]))
-					f.write(',' + ','.join([str(CoThetaVDiffList[alg_name][-1]) for alg_name in CoThetaVDiffList.iterkeys()]))
-					f.write(',' + ','.join([str(RVDiffList[alg_name][-1]) for alg_name in RVDiffList.iterkeys()]))
-					f.write(',' + ','.join([str(RDiffList[alg_name][-1]) for alg_name in RDiffList.iterkeys()]))
+					f.write(',' + ','.join([str(CoThetaDiffList[alg_name][-1]) for alg_name in CoThetaDiffList.keys()]))
+					f.write(','+ ','.join([str(ThetaDiffList[alg_name][-1]) for alg_name in ThetaDiffList.keys()]))
+					f.write(','+ ','.join([str(WDiffList[alg_name][-1]) for alg_name in WDiffList.keys()]))
+					f.write(',' + ','.join([str(VDiffList[alg_name][-1]) for alg_name in VDiffList.keys()]))
+					f.write(',' + ','.join([str(CoThetaVDiffList[alg_name][-1]) for alg_name in CoThetaVDiffList.keys()]))
+					f.write(',' + ','.join([str(RVDiffList[alg_name][-1]) for alg_name in RVDiffList.keys()]))
+					f.write(',' + ','.join([str(RDiffList[alg_name][-1]) for alg_name in RDiffList.keys()]))
 					f.write('\n')
 
 		if (self.plot==True): # only plot
 			# plot the results	
 			f, axa = plt.subplots(1, sharex=True)
-			for alg_name in algorithms.iterkeys():	
+			for alg_name in algorithms.keys():	
 				axa.plot(tim_, BatchCumlateRegret[alg_name],label = alg_name)
-				print '%s: %.2f' % (alg_name, BatchCumlateRegret[alg_name][-1])
+				print ('%s: %.2f' % (alg_name, BatchCumlateRegret[alg_name][-1]))
 			axa.legend(loc='upper left',prop={'size':9})
 			axa.set_xlabel("Iteration")
 			axa.set_ylabel("Regret")
@@ -372,7 +372,7 @@ class simulateOnlineData(object):
 			plt.show()
 
 		finalRegret = {}
-		for alg_name in algorithms.iterkeys():
+		for alg_name in algorithms.keys():
 			finalRegret[alg_name] = BatchCumlateRegret[alg_name][:-1]
 		return finalRegret
 
@@ -385,7 +385,7 @@ def pca_articles(articles, order):
 	# X_new = np.asarray(X)
 	print('pca variance in each dim:', pca.explained_variance_ratio_) 
 
-	print X_new
+	print (X_new)
 	#default is descending order, where the latend features use least informative dimensions.
 	if order == 'random':
 		np.random.shuffle(X_new.T)
@@ -487,7 +487,7 @@ if __name__ == '__main__':
 						sparseLevel = sparseLevel,
 						poolArticleSize = poolSize, NoiseScale = NoiseScale, epsilon = epsilon, Gepsilon =Gepsilon)
 
-	print "Starting for ", simExperiment.simulation_signature
+	print ("Starting for ", simExperiment.simulation_signature)
 
 	algorithms = {}
 	

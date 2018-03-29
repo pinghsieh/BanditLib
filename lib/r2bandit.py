@@ -1,5 +1,5 @@
 import numpy as np
-from GLMUCB import LogisticUserStruct, PoissonStruct, reward_GLMUCBAlgorithm
+from lib.GLMUCB import LogisticUserStruct, PoissonStruct, reward_GLMUCBAlgorithm
 
 class r2_banditAlgorithm:
 	def __init__(self, dimension, alpha, lambda_, FutureWeight, ReturnThreshold,  usealphaT = False, RankoneInverse = False):

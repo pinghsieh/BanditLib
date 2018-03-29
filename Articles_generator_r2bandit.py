@@ -1,4 +1,4 @@
-import cPickle
+import _pickle as cPickle
 import numpy as np 
 from util_functions import featureUniform, gaussianFeature, fileOverWriteWarning
 from random import sample, randint, uniform
@@ -80,7 +80,7 @@ class ArticleManager():
 		vector_l2_norm = np.linalg.norm(vector, ord =2)
 		final_vector_norm = np.asarray(vector)/float(vector_l2_norm)
 			
-		print 'small, small', np.exp(np.dot(vector, theta)), np.exp(np.dot(vector, beta))
+		print ('small, small', np.exp(np.dot(vector, theta)), np.exp(np.dot(vector, beta)))
 		return vector
 
 	def large_large_Exp(self, theta, beta, large_bound):
@@ -93,7 +93,7 @@ class ArticleManager():
 		vector_l2_norm = np.linalg.norm(vector, ord =2)
 		final_vector_norm = np.asarray(vector)/float(vector_l2_norm)
 			
-		print 'lagrge, large', np.exp(np.dot(final_vector_norm, theta)), np.exp(np.dot(final_vector_norm, beta))
+		print ('lagrge, large', np.exp(np.dot(final_vector_norm, theta)), np.exp(np.dot(final_vector_norm, beta)))
 		return vector
 
 	def small_large_Exp(self, theta, beta, small_bound, large_bound):
@@ -107,7 +107,7 @@ class ArticleManager():
 		vector_l2_norm = np.linalg.norm(vector, ord =2)
 		final_vector_norm = np.asarray(vector)/float(vector_l2_norm)
 			
-		print 'small, large', np.exp(np.dot(final_vector_norm, theta)), np.exp(np.dot(final_vector_norm, beta))
+		print ('small, large', np.exp(np.dot(final_vector_norm, theta)), np.exp(np.dot(final_vector_norm, beta)))
 		return vector
 
 	def large_small_Exp(self, theta, beta, small_bound, large_bound):
@@ -120,7 +120,7 @@ class ArticleManager():
 		vector_l2_norm = np.linalg.norm(vector, ord =2)
 		final_vector_norm = np.asarray(vector)/float(vector_l2_norm)
 			
-		print 'lagrge, small', np.exp(np.dot(final_vector_norm, theta)), np.exp(np.dot(final_vector_norm, beta))
+		print ('lagrge, small', np.exp(np.dot(final_vector_norm, theta)), np.exp(np.dot(final_vector_norm, beta)))
 		return vector
 
 	def simulateArticlePool_2SetOfFeature(self):
@@ -139,7 +139,7 @@ class ArticleManager():
 
 		# small_bound_return = -1  # lambda = -1 coressponds to lambda = e^{-1}, expected return time t = e
 		# large_bound_return = 1   # lambda = -1 coressponds to lambda = e^{-1}, expected return time t = 1/e
-		print 'generating articles ...'
+		print ('generating articles ...')
 		for i in range(self.n_articles):
 			small_theta_small_beta = list(self.small_small_Exp(self.userFeature_theta, self.userFeature_beta, small_bound))
 			small_theta_large_beta = list(self.small_large_Exp(self.userFeature_theta, self.userFeature_beta, small_bound, large_bound))
@@ -150,7 +150,7 @@ class ArticleManager():
 			articlesDic['small_large'].append(Article(4*i+1, 'smallTheta_largeBeta',small_theta_large_beta))
 			articlesDic['large_small'].append(Article(4*i+2, 'largeTheta_smallBeta', large_theta_small_beta))
 			articlesDic['large_large'].append(Article(4*i+3, 'largeTheta_largeBeta', large_theta_large_beta))
-		print 'finish generating articles!'
+		print ('finish generating articles!')
 
 		return articlesDic['small_small'], 	articlesDic['small_large'], articlesDic['large_small'], articlesDic['large_large']
 

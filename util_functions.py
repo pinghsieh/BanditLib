@@ -54,7 +54,7 @@ def checkFileExists(filename):
 def fileOverWriteWarning(filename, force):
 	if checkFileExists(filename):
 		if force == True:
-			print "Warning : fileOverWriteWarning %s"%(filename)
+			print ("Warning : fileOverWriteWarning %s"%(filename))
 		else:
 			raise FileExists(filename)
 

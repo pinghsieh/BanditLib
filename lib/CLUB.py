@@ -1,5 +1,5 @@
 import numpy as np
-from LinUCB import *
+from lib.LinUCB import *
 import math
 from scipy.sparse.csgraph import connected_components
 from scipy.sparse import csr_matrix

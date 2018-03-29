@@ -48,7 +48,7 @@ class UserManager():
 		fileOverWriteWarning(filename, force)
 		with open(filename, 'w') as f:
 			for i in range(len(users)):
-				print users[i].theta, users[i].userFeature
+				print (users[i].theta, users[i].userFeature)
 				f.write(json.dumps((users[i].id, users[i].theta.tolist(), users[i].beta.tolist(), users[i].userFeature.tolist() )) + '\n')
 				
 	def loadUsers(self, filename):

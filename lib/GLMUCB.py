@@ -61,7 +61,7 @@ def Expontential_ParaEstimatation(X, Y, para):
 			innerProduct = np.dot(X[i], w)
 			#print 'WWW', w
 			if innerProduct<=0:
-				print innerProduct, X[i], w
+				print (innerProduct, X[i], w)
 			functionValue  += ( Y[i]*innerProduct -  math.log(innerProduct))
 		return functionValue
 	def evaluateGradient(w, X = X, Y = Y):
@@ -75,7 +75,7 @@ def Expontential_ParaEstimatation(X, Y, para):
 	#print 'para', para
 	res = minimize(fun, para, method ='BFGS', jac = evaluateGradient, bounds=getbounds(len(para)), options={'disp': False})
 	NewPara = res.x
-	print 'success?', res.success
+	print ('success?', res.success)
 
 	return NewPara
 

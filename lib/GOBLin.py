@@ -5,7 +5,7 @@ import time
 import datetime
 
 from util_functions import vectorize, matrixize
-from CoLin import CoLinUCBAlgorithm, CoLinUCB_SelectUserAlgorithm
+from lib.CoLin import CoLinUCBAlgorithm, CoLinUCB_SelectUserAlgorithm
 
 
 
